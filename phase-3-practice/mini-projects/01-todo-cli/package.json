@@ -1,0 +1,16 @@
+{
+    "name": "todo-cli",
+    "version": "1.0.0",
+    "description": "Mini Project 1 - CLI Todo App",
+    "main": "src/index.ts",
+    "scripts": {
+        "start": "ts-node src/index.ts",
+        "add": "ts-node src/index.ts add",
+        "list": "ts-node src/index.ts list"
+    },
+    "devDependencies": {
+        "@types/node": "^22.0.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
+    }
+}

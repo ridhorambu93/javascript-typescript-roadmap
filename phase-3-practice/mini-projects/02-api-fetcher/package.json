@@ -1,0 +1,13 @@
+{
+    "name": "api-fetcher",
+    "version": "1.0.0",
+    "description": "Mini Project 2 - Fetch & Transform API Data",
+    "scripts": {
+        "start": "ts-node src/index.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^22.0.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
+    }
+}
