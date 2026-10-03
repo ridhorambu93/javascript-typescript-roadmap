@@ -70,13 +70,16 @@
 //     return 'Nama: ' + name + '\nUmur: ' + age + ' tahun\nKota: ' + city
 // }
 
-// JAWABAN:
+// // JAWABAN:
+// function buildProfile(name, age, city) {  
+//   return `Nama:  ${name} \nUmur:  ${age} tahun\nKota: ${city}`
+// }
+// console.log(buildProfile("aldy", 25, "malang"))
 
-
-// // ============================================================
-// // SOAL 4 — Object Destructuring
-// // ============================================================
-// // Gunakan destructuring untuk mengambil data dari object ini
+// ============================================================
+// SOAL 4 — Object Destructuring
+// ============================================================
+// Gunakan destructuring untuk mengambil data dari object ini
 
 // const product = {
 //     id: 101,
@@ -86,74 +89,98 @@
 //     stock: 50
 // }
 
-// // Ambil: name, price, stock menggunakan destructuring
-// // Lalu print: "Laptop - Rp15000000 (stok: 50)"
+// Ambil: name, price, stock menggunakan destructuring
+// Lalu print: "Laptop - Rp15000000 (stok: 50)"
 
-// // JAWABAN:
+// JAWABAN:
+// const {name, price, stock} = product
+// console.log(`${name} - Rp${price} (stok: ${stock})`)
 
 
-// // ============================================================
-// // SOAL 5 — Array Destructuring
-// // ============================================================
-// // Gunakan array destructuring
+// ============================================================
+// SOAL 5 — Array Destructuring
+// ============================================================
+// Gunakan array destructuring
 
 // const coordinates = [106.8456, -6.2088, 10]  // [longitude, latitude, altitude]
 
-// // Ambil longitude dan latitude, skip altitude
-// // Lalu print: "Lokasi: 106.8456, -6.2088"
+// Ambil longitude dan latitude, skip altitude
+// Lalu print: "Lokasi: 106.8456, -6.2088"
 
-// // JAWABAN:
+// JAWABAN:
+// const [longitude, latitude] = coordinates
+// console.log(`Lokasi: ${longitude}, ${latitude}`)
 
 
-// // ============================================================
-// // SOAL 6 — Destructuring di Parameter Fungsi
-// // ============================================================
-// // Tulis ulang fungsi ini menggunakan destructuring di parameter
+// ============================================================
+// SOAL 6 — Destructuring di Parameter Fungsi
+// ============================================================
+// Tulis ulang fungsi ini menggunakan destructuring di parameter
 
 // function displayUser(user) {
 //     console.log(`${user.name} (${user.email}) - Role: ${user.role}`)
 // }
 
-// const testUser = { name: 'Rye', email: 'rye@email.com', role: 'admin' }
-// displayUser(testUser)
-
-// // JAWABAN:
-
-
-// // ============================================================
-// // SOAL 7 — Default Parameter
-// // ============================================================
-// // Tambahkan default value pada parameter fungsi ini
-
-// function createButton(text, color, size) {
-//     // Kalau color tidak diberikan, default: 'blue'
-//     // Kalau size tidak diberikan, default: 'medium'
-//     return `<button style="color:${color}; size:${size}">${text}</button>`
+// JAWABAN:
+// function displayUser({ name, email, role }) {
+//   console.log(`${name} (${email}) - Role: ${role}`)
 // }
 
-// // Test:
-// // createButton('Klik Saya')           → pakai default color dan size
-// // createButton('Submit', 'red')       → pakai default size saja
-// // createButton('Cancel', 'gray', 'small') → semua custom
-
-// // JAWABAN:
+// const myUser = { name: "Rye", email: "rye@email.com", role: "admin" }
+// displayUser(myUser)
 
 
-// // ============================================================
-// // SOAL 8 — CHALLENGE
-// // ============================================================
-// // Buat fungsi yang menerima array of objects (data siswa),
-// // lalu return string ringkasan menggunakan destructuring dan template literal
+// ============================================================
+// SOAL 7 — Default Parameter
+// ============================================================
+// Tambahkan default value pada parameter fungsi ini
 
-// const students = [
-//     { name: 'Andi', grade: 85, passed: true },
-//     { name: 'Budi', grade: 60, passed: false },
-//     { name: 'Cici', grade: 92, passed: true },
-// ]
+function createButton(text, color, size) {
+// Kalau color tidak diberikan, default: 'blue'
+// Kalau size tidak diberikan, default: 'medium'
+    return `<button style="color:${color}; size:${size}">${text}</button>`
+}
 
-// // Expected output:
-// // "Andi: 85 (LULUS)"
-// // "Budi: 60 (TIDAK LULUS)"
-// // "Cici: 92 (LULUS)"
+// Test:
+// createButton('Klik Saya')           → pakai default color dan size
+// createButton('Submit', 'red')       → pakai default size saja
+// createButton('Cancel', 'gray', 'small') → semua custom
 
-// // JAWABAN:
+// JAWABAN:
+function createButton(text, color = 'blue', size='medium') {
+  return `<button style="color:${color}; size:${size}">${text}</button>`
+}
+createButton(`Klik Saya`)
+createButton('Submit', 'red')
+createButton('Cancel', 'gray', 'small')
+
+console.log(createButton("Klik Saya"))
+console.log(createButton("Submit", "red"))
+console.log(createButton("Cancel", "gray", "small"))
+
+
+
+// ============================================================
+// SOAL 8 — CHALLENGE
+// ============================================================
+// Buat fungsi yang menerima array of objects (data siswa),
+// lalu return string ringkasan menggunakan destructuring dan template literal
+
+const students = [
+    { name: 'Andi', grade: 85, passed: true },
+    { name: 'Budi', grade: 60, passed: false },
+    { name: 'Cici', grade: 92, passed: true },
+]
+
+// Expected output:
+// "Andi: 85 (LULUS)"
+// "Budi: 60 (TIDAK LULUS)"
+// "Cici: 92 (LULUS)"
+
+// JAWABAN:
+const studentSummary = students => {
+  return students.map(({name, grade, passed}) => {
+    const status = passed ? "LULUS" : "TIDAK LULUS"
+    return `${name}: ${grade} (${status})`
+  }).join("\n")
+}
