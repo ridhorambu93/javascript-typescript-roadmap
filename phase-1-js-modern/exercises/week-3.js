@@ -16,7 +16,7 @@
 // ============================================================
 
 function simulateDelay(ms, value, shouldFail = false) {
-    return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (shouldFail) {
                 reject(new Error(`Gagal mengambil data: ${value}`))
@@ -59,11 +59,20 @@ function getDepartment(id) {
 
 function validatePositive(number) {
     // JAWABAN:
+    return new Promise((resolve, reject) => {
+        if (number > 0) {
+            resolve('sukses')
+        } else {
+            reject(new Error('angka harus positif'))
+        }
+    })
 }
 
 // Test:
-// validatePositive(5).then(msg => console.log(msg))   → 'sukses'
-// validatePositive(-1).catch(err => console.log(err.message)) → 'angka harus positif'
+validatePositive(5).then(msg => console.log(msg)) 
+//   → 'sukses'
+validatePositive(-1).catch(err => console.log(err.message)) 
+// → 'angka harus positif'
 
 
 // ============================================================
