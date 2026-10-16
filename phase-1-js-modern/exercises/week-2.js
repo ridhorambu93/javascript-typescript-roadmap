@@ -13,13 +13,15 @@
 // ============================================================
 // Gabungkan dua array ini menjadi satu tanpa mengubah original
 
-const fruits = ['apel', 'mangga', 'jeruk']
-const veggies = ['bayam', 'wortel', 'brokoli']
+// const fruits = ['apel', 'mangga', 'jeruk']
+// const veggies = ['bayam', 'wortel', 'brokoli']
 
 // Expected: ['apel', 'mangga', 'jeruk', 'bayam', 'wortel', 'brokoli']
 // Pastikan fruits dan veggies tidak berubah
 
 // JAWABAN:
+// const myFruits = [...fruits, ...veggies]
+// console.log(myFruits);
 
 
 // ============================================================
@@ -44,7 +46,11 @@ const userConfig = {
 // { theme: 'dark', language: 'id', fontSize: 16, notifications: true }
 
 // JAWABAN:
+const myObject={
+    ...defaults,...userConfig
+}
 
+// console.log(myObject)
 
 // ============================================================
 // SOAL 3 — Spread: Copy & Modify
@@ -63,6 +69,13 @@ const originalUser = {
 // originalUser.email harus tetap 'rye@old.com'
 
 // JAWABAN:
+// const updateUser = {
+//   ...originalUser,
+//   email: "rye@new.com",
+// }
+
+// console.log(originalUser)
+// console.log(updateUser.email)
 
 
 // ============================================================
@@ -75,11 +88,21 @@ const originalUser = {
 // describeHobbies('Rye', 'coding', 'gaming', 'hiking')
 // → "Rye punya hobi: coding, gaming, hiking"
 
-function describeHobbies(name, ...hobbies) {
+// 1
+// function describeHobbies(name, ...hobbies) {
     // JAWABAN:
-}
+    // return `${name} memiliki hobi: ${hobbies.join(", ")}.`
+// }
 
-describeHobbies('Rye', 'coding', 'gaming', 'hiking')
+// const hasil = describeHobbies('Rye', 'coding', 'gaming', 'hiking')
+
+// 2
+// function describeNovel(name, novels, comics) {
+//     return `${name} mempunyai ${novels} novel dan ${comics} komik`
+// }
+
+// const result = describeNovel('Ridho', 2, 3)
+// console.log(result)
 
 
 // ============================================================
@@ -89,12 +112,16 @@ describeHobbies('Rye', 'coding', 'gaming', 'hiking')
 // dari sisa array
 
 const scores = [95, 87, 76, 65, 55]
-
 // Ambil nilai tertinggi (elemen pertama) dan sisa nilai
 // Print: "Nilai tertinggi: 95"
 // Print: "Nilai lainnya: 87, 76, 65, 55"
 
 // JAWABAN:
+const [highest, ...rest] = scores
+
+// console.log(`Nilai tertinggi: ${highest}`)
+// console.log(`Nilai lainnya: ${rest.join(", ")}`)
+
 
 
 // ============================================================
@@ -107,13 +134,25 @@ const scores = [95, 87, 76, 65, 55]
 
 // JAWABAN:
 class Animal {
-    // lengkapi di sini
+    constructor(name, sound) {
+      this.name = name
+      this.sound = sound
+    }
+
+    speak() {
+        console.log(`${this.name} berkata: ${this.sound}`)
+    }
+
+    toString() {
+        return `Animal: ${this.name}`
+    }
 }
 
 // Test:
 // const cat = new Animal('Kucing', 'Meow')
-// cat.speak()     → "Kucing berkata: Meow"
-// cat.toString()  → "Animal: Kucing"
+// cat.speak()
+// cat.toString()
+// console.log(cat.toString())
 
 
 // ============================================================
@@ -126,13 +165,23 @@ class Animal {
 
 // JAWABAN:
 class Dog extends Animal {
-    // lengkapi di sini
+    constructor(name) {
+        super(name,'Guk')
+    }
+
+    fetch() {
+        console.log(`${this.name} mengambil bola!`)
+    }
+
+    speak() {
+        console.log(`${this.name} menggonggong: Guk Guk!`)
+    }
 }
 
 // Test:
-// const dog = new Dog('Rex')
-// dog.speak()   → "Rex menggonggong: Guk Guk!"
-// dog.fetch()   → "Rex mengambil bola!"
+const dog = new Dog('Rex')
+dog.speak()
+dog.fetch()
 
 
 // ============================================================
@@ -147,8 +196,40 @@ class Dog extends Animal {
 
 // JAWABAN:
 class Calculator {
-    // lengkapi di sini
+  static add(a, b) {
+    const result =  a + b
+    Calculator.operations.push(`add(${a}, ${b}) = ${result}`)
+    return result
+  }
+
+  static subtract(a, b) {
+    const result = a - b
+    Calculator.operations.push(`subtract(${a}, ${b}) = ${result}`)
+    return result
+
+  }
+
+  static multiply(a, b) {
+    const result =  a * b
+    Calculator.operations.push(`multiply(${a}, ${b}) = ${result}`)
+    return result
+  }
+
+  static divide(a, b) {
+      if (b === 0) throw new Error("Tidak bisa dibagi nol")
+        const result = a / b
+
+      Calculator.operations.push(`divide(${a}, ${b}) = ${result}`)
+        return result
+  }
+
+  history() {
+    return Calculator.operations
+  }
+
 }
+
+Calculator.operations = []
 
 // Test:
 // Calculator.add(5, 3)       → 8
