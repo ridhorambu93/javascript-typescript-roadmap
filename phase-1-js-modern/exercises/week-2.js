@@ -30,25 +30,25 @@
 // Buat object baru yang menggabungkan defaults dengan userConfig
 // userConfig harus override defaults kalau ada key yang sama
 
-const defaults = {
-    theme: 'light',
-    language: 'id',
-    fontSize: 14,
-    notifications: true
-}
+// const defaults = {
+//     theme: 'light',
+//     language: 'id',
+//     fontSize: 14,
+//     notifications: true
+// }
 
-const userConfig = {
-    theme: 'dark',
-    fontSize: 16
-}
+// const userConfig = {
+//     theme: 'dark',
+//     fontSize: 16
+// }
 
 // Expected result:
 // { theme: 'dark', language: 'id', fontSize: 16, notifications: true }
 
 // JAWABAN:
-const myObject={
-    ...defaults,...userConfig
-}
+// const myObject={
+//     ...defaults,...userConfig
+// }
 
 // console.log(myObject)
 
@@ -58,12 +58,12 @@ const myObject={
 // Buat copy dari object user ini, tapi dengan email yang diupdate
 // JANGAN modifikasi object original
 
-const originalUser = {
-    id: 1,
-    name: 'Rye',
-    email: 'rye@old.com',
-    role: 'user'
-}
+// const originalUser = {
+//     id: 1,
+//     name: 'Rye',
+//     email: 'rye@old.com',
+//     role: 'user'
+// }
 
 // Expected: object baru dengan email: 'rye@new.com', sisanya sama
 // originalUser.email harus tetap 'rye@old.com'
@@ -111,13 +111,13 @@ const originalUser = {
 // Gunakan destructuring + rest untuk memisahkan elemen pertama
 // dari sisa array
 
-const scores = [95, 87, 76, 65, 55]
+// const scores = [95, 87, 76, 65, 55]
 // Ambil nilai tertinggi (elemen pertama) dan sisa nilai
 // Print: "Nilai tertinggi: 95"
 // Print: "Nilai lainnya: 87, 76, 65, 55"
 
 // JAWABAN:
-const [highest, ...rest] = scores
+// const [highest, ...rest] = scores
 
 // console.log(`Nilai tertinggi: ${highest}`)
 // console.log(`Nilai lainnya: ${rest.join(", ")}`)
@@ -133,20 +133,20 @@ const [highest, ...rest] = scores
 // - method toString() yang return: "Animal: Kucing"
 
 // JAWABAN:
-class Animal {
-    constructor(name, sound) {
-      this.name = name
-      this.sound = sound
-    }
+// class Animal {
+//     constructor(name, sound) {
+//       this.name = name
+//       this.sound = sound
+//     }
 
-    speak() {
-        console.log(`${this.name} berkata: ${this.sound}`)
-    }
+//     speak() {
+//         console.log(`${this.name} berkata: ${this.sound}`)
+//     }
 
-    toString() {
-        return `Animal: ${this.name}`
-    }
-}
+//     toString() {
+//         return `Animal: ${this.name}`
+//     }
+// }
 
 // Test:
 // const cat = new Animal('Kucing', 'Meow')
@@ -164,24 +164,24 @@ class Animal {
 // - override speak() untuk print: "[nama] menggonggong: Guk Guk!"
 
 // JAWABAN:
-class Dog extends Animal {
-    constructor(name) {
-        super(name,'Guk')
-    }
+// class Dog extends Animal {
+//     constructor(name) {
+//         super(name,'Guk')
+//     }
 
-    fetch() {
-        console.log(`${this.name} mengambil bola!`)
-    }
+//     fetch() {
+//         console.log(`${this.name} mengambil bola!`)
+//     }
 
-    speak() {
-        console.log(`${this.name} menggonggong: Guk Guk!`)
-    }
-}
+//     speak() {
+//         console.log(`${this.name} menggonggong: Guk Guk!`)
+//     }
+// }
 
 // Test:
-const dog = new Dog('Rex')
-dog.speak()
-dog.fetch()
+// const dog = new Dog('Rex')
+// dog.speak()
+// dog.fetch()
 
 
 // ============================================================
@@ -216,6 +216,7 @@ class Calculator {
   }
 
   static divide(a, b) {
+
       if (b === 0) throw new Error("Tidak bisa dibagi nol")
         const result = a / b
 
@@ -230,7 +231,15 @@ class Calculator {
 }
 
 Calculator.operations = []
+Calculator.add(5, 3)
+Calculator.subtract(10, 4)
+Calculator.multiply(2, 6)
 
-// Test:
-// Calculator.add(5, 3)       → 8
-// Calculator.divide(10, 0)   → throw Error('Tidak bisa dibagi nol')
+    try {
+        Calculator.divide(2, 0)
+    } catch (e) {
+      console.log(e.message)
+    }
+
+const calc = new Calculator()
+console.log(calc.history())
